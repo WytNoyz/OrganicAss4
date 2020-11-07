@@ -9,7 +9,7 @@ class Todo extends Component {
     render() { 
         return (
             <div>
-            <h5>Simple todo app</h5>
+            <h5>Add a List or Reminders!</h5>
 
                 <div>
                     <input type="text" value={this.state.todoText} onChange={this.handleTextChange} placeholder="Todo text"></input>
