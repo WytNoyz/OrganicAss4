@@ -2,29 +2,33 @@ import React from "react";
 import "./App.css";
 import Footer from "./components/footer/footer";
 import NavBar from "./components/navBar/navBar";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import Catalog from "./components/catalog/catalog";
 import Todo from "./components/todo/todo";
 
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./components/home/home";
+import About from "./components/about/about";
+
 function App() {
   return (
-    <div className="App">
-      <NavBar></NavBar>
-      <i className="fa fa-blind" aria-hidden="true"></i>
+    <BrowserRouter>
+      <div className="App">
+        <NavBar></NavBar>
 
-      <div className="container">
-        <br />
-        <br />
-        <Catalog></Catalog> {/*comment to simplify*/}
-        <hr></hr>
-        <Todo>
-          <li className="bg"></li>
-        </Todo>
+        <div className="container-fluid">
+          <Switch>
+            <Route path="/" exact component={Home}></Route>
+            <Route path="/catalog" component={Catalog}></Route>
+            <Route path="/todo" component={Todo}></Route>
+            <Route path="/about" component={About}></Route>
+          </Switch>
+        </div>
+        <Footer></Footer>
       </div>
-
-      <Footer></Footer>
-    </div>
+    </BrowserRouter>
   );
 }
 
