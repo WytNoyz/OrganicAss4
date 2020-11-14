@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import QuantityPicker from './../quantityPicker/quantityPicker';
-
+import { connect } from 'react-redux';
 import "./product.css";
+import { addProductToCart } from '../../store/actions/actions';
+
 
 class Product extends Component {
     state = {
@@ -16,7 +18,7 @@ class Product extends Component {
             <h4> {this.props.data.title} </h4>
 
             <div className="prices">
-                <h5> Total:{this.props.data.price * this.state.quantity}</h5>
+                <h5> Total:{this.getTotal()}</h5>
                 <h6>Price: {this.props.data.price}</h6>
             </div>
 
@@ -24,11 +26,28 @@ class Product extends Component {
                     <QuantityPicker 
                     minimum={this.props.data.minimum || 1} 
                     onValueChange={ (qnty) => this.handleQuantityChange(qnty) } ></QuantityPicker>
-                    <button className="btn btn-sm btn-info">Add</button>
+                    <button 
+                    onClick={this.addClicked}
+                    className="btn btn-sm btn-info">Add</button>
                 </div>
         </div>
         );
     }
+
+addClicked = () => {
+    console.log("Dispatch action");
+
+    const addedProduct = {
+        product: this.props.data,
+        quantity: this.state.quantity,
+    };
+    this.props.addProductToCart(this.props.data);
+};
+
+getTotal = () => {
+    let total = this.props.data.price * this.state.quantity;
+    return total.toFixed(2);
+};
 
 handleQuantityChange = (quantity) => {
     console.log("Qnty changed", quantity);
@@ -37,4 +56,4 @@ handleQuantityChange = (quantity) => {
 }
 
 
-export default Product;
+export default connect(null, { addProductToCart })(Product);

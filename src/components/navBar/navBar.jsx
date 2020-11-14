@@ -1,12 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 import "./navBar.css";
-import Todo from './../todo/todo';
 
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
 
 
-function NavBar() {
-    return ( 
+class NavBar extends Component {
+  render() {
+  return ( 
     <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ backgroundColor: '#fff'}}>
     <Link className="navbar-brand" to="/">Organic</Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,13 +31,27 @@ function NavBar() {
 
 
       </ul>
-      <form className="form-inline my-2 my-lg-0">
-        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-        <button className="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
-      </form>
+      <div className="form-inline my-2 my-lg-0">
+        <Link className="btn btn-outline-info my-2 my-sm-0" to="/cart" >
+        <i class="fa fa-shopping-cart cart-icon" aria-hidden="true">View Cart</i>
+
+        <span class="badge badge-primary cart-badge">
+          {this.props.count}
+        </span>
+        </Link>
+      </div>
     </div>
   </nav>
   );
   }
 
-export default NavBar;
+}
+
+  const mapStateToProps = (state) => {
+    return {
+      test: 'this is a test',
+      count: state.cart.length,
+    }
+  };
+
+export default connect(mapStateToProps, null)(NavBar);

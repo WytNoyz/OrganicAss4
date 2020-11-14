@@ -12,7 +12,11 @@ class Todo extends Component {
             <h5>Add a List or Reminders!</h5>
 
                 <div>
-                    <input type="text" value={this.state.todoText} onChange={this.handleTextChange} placeholder="Todo text"></input>
+                    <input type="text" 
+                    value={this.state.todoText} 
+                    onChange={this.handleTextChange} 
+                    placeholder="Todo text">
+                    </input>
                     <button onClick={this.addTodo}>Add</button>
                 </div>
 
