@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import Catalog from "./components/catalog/catalog";
 import Todo from "./components/todo/todo";
+import Cart from "./components/cart/cart";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/home/home";
@@ -24,6 +25,7 @@ function App() {
             <Route path="/catalog" component={Catalog}></Route>
             <Route path="/todo" component={Todo}></Route>
             <Route path="/about" component={About}></Route>
+            <Route path="/cart" component={Cart}></Route>
           </Switch>
         </div>
         <Footer></Footer>

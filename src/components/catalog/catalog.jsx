@@ -57,13 +57,11 @@ selectCategory = (category) => {
     this.setState({selectedCategory: category});
 }
 
-componentDidMount() {
-    console.log("Load data here");
-
+async componentDidMount() {
     let service = new ProductService();
-    const data = service.getProducts();
+    const data = await service.getProducts();
     this.setState({products: data});
-    console.log(data);
+    
 
     let categories = [];
 
